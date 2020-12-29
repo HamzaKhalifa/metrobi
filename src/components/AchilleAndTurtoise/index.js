@@ -44,10 +44,22 @@ const AchilleAndTurtoise = () => {
         interval = setInterval(() => {
             let newCompetitors = [...state.competitors];
 
-            newCompetitors.map(competitor => {
-                competitor.distance += competitor.step * competitor.speed;
-                competitor.step = competitor.step / .99;
-            });
+            // Computing the turtoise's step ahead of time
+            let nextDistance = newCompetitors[newCompetitors.length - 1].distance + competitors[newCompetitors.length - 1].step;
+
+            // Reducing the turtoise's step by a small percentage.
+            let nextStep = newCompetitors[newCompetitors.length - 1].step - (newCompetitors[newCompetitors.length - 1].step * .99 / 100);
+            
+            for (let i = 0; i < newCompetitors.length; i++) {
+                if(i != newCompetitors.length - 1) {
+                    // Each competitor that's behind (Achille) gets the previous distance of the competitor that's ahead of him
+                    newCompetitors[i].distance = newCompetitors[i + 1].distance;
+                } else {
+                    // And the turtoise gets the previous computed distance
+                    newCompetitors[i].distance = nextDistance;
+                    newCompetitors[i].step = nextStep;
+                }
+            }
 
             setState({
                 ...state,

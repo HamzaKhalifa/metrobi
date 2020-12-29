@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import utils from './utils';
+import AchilleAndTurtoise from './components/AchilleAndTurtoise';
 
-function App() {
+const App = () => {
+  // const ray1 = [4, 5, 6, 1, 1, 4, 8, 9, 5];
+  // console.log("Looking for duplicates of ray1", ray1);
+  // const duplicates = utils.question1FindDulpicates(ray1);
+  // console.log("------");
+  // console.log("Duplicates", duplicates);
+
+  // const ray2 = ["a", "b", "c", "d"];
+  // console.log("Async printing of", ray2);
+  // utils.question2AsyncFunction(ray2);
+
+  const carrotTypes = [
+    { kg: 5, price: 100 },
+    { kg: 7, price: 150 },
+    { kg: 3, price: 70 },
+  ]
+  console.log(utils.question7GetMaxValue(carrotTypes, 36));
+
+  console.log(utils.question4IsOpenedAndClosedProperly('{[]]}'));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AchilleAndTurtoise />
     </div>
   );
 }

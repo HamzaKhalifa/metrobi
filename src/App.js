@@ -28,9 +28,7 @@ const App = () => {
   console.log('Is opened and closed properly ({}{[[]]})', utils.question4IsOpenedAndClosedProperly('({}{[[]]})'));
   console.log('Is opened and closed properly ({}{[[]]})', utils.question4IsOpenedAndClosedProperly('({}{[[]]})'));
   console.log('Is opened and closed properly ({}}{[[]]})', utils.question4IsOpenedAndClosedProperly('({}}{[[]]})'));
-
-  // console.log('Highest Floor', utils.question6EggProblem([true, true, true, true, true, true, true, true, false, false, false], 2));
-
+  
   return (
     <div className="App">
       <AchilleAndTurtoise />

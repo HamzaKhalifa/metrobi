@@ -4,7 +4,7 @@ const utils = {
         let sorted = ray.sort();
         
         for (let i = 0; i < sorted.length - 1; i++) {
-            if (sorted[i + 1] == sorted[i])  
+            if (sorted[i + 1] === sorted[i] && results.indexOf(sorted[i]) === -1)  
                 results.push(sorted[i]);
         }
 
@@ -22,21 +22,29 @@ const utils = {
         await Promise.all(resolves);
     },
     question4IsOpenedAndClosedProperly: (entry) => {
-        let ourBrackets = new Map();
-        ourBrackets.set('{', '}');
-        ourBrackets.set('[', ']');
-        ourBrackets.set('(', ')');
+        // The principle should be like this: The last one that gets opened should be the first one that gets closed. 
+        // We then keep the indexes for the ones that get opened in an array
+        // And check if a closing one's index matches the last element that got opened
+        let openingBrackets = ['{', '[', '('];
+        let closingBrackets = ['}', ']', ')'];
+        let openedBrackets = [];
 
-        if (entry.length % 2 !== 0) return false;
+        for (let element of entry) { 
+            let isAnOpeningBracket = openingBrackets.indexOf(element) !== -1;
+            let isAClosingBracket = closingBrackets.indexOf(element) !== -1
 
-        for (let i = 0; i < entry.length / 2; i++) {
-            let closure = entry[entry.length - (i + 1)];
+            // If the element isn't even a bracket 
+            if (!isAnOpeningBracket && !isAClosingBracket) return false;
 
-            if (ourBrackets.get(entry[i]) == undefined) return false; 
-            if (ourBrackets.get(entry[i]) != closure) return false;
+            // If it's an opening bracket
+            if (isAnOpeningBracket) {
+                openedBrackets.push(openingBrackets.indexOf(element));
+            } else {
+                if (openedBrackets.pop() !== closingBrackets.indexOf(element)) return false;
+            }
         }
 
-        return true;
+        return openedBrackets.length === 0;
     },
     question7GetMaxValue: (carrotTypes, capacity) => {
         let scores = carrotTypes.map((carrotType, index) => ({index, score: carrotType.price / carrotType.kg}));

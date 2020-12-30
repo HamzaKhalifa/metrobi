@@ -55,7 +55,7 @@ const AchilleAndTurtoise = () => {
                     // Each competitor that's behind (Achille) gets the previous distance of the competitor that's ahead of him
                     newCompetitors[i].distance = newCompetitors[i + 1].distance;
                 } else {
-                    // And the turtoise gets the previous computed distance
+                    // And the turtoise gets the next computed distance
                     newCompetitors[i].distance = nextDistance;
                     newCompetitors[i].step = nextStep;
                 }

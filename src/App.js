@@ -4,7 +4,8 @@ import utils from './utils';
 import AchilleAndTurtoise from './components/AchilleAndTurtoise';
 
 const App = () => {
-  const ray1 = [4, 5, 6, 1, 1, 4, 8, 9, 5];
+  // const ray1 = [4, 5, 6, 1, 1, 4, 8, 9, 5];
+  const ray1 = [1,2,2,2,3];
   console.log("Looking for duplicates of ray1", ray1);
   const duplicates = utils.question1FindDulpicates(ray1);
   console.log("------");
@@ -21,7 +22,14 @@ const App = () => {
   ]
   console.log('Max value', utils.question7GetMaxValue(carrotTypes, 36));
 
-  console.log('Is opened and closed properly', utils.question4IsOpenedAndClosedProperly('{[]]}'));
+  console.log('Is opened and closed properly {[]{[]}}', utils.question4IsOpenedAndClosedProperly('{[]{[]}}'));
+  console.log('Is opened and closed properly ([])', utils.question4IsOpenedAndClosedProperly('([])'));
+  console.log('Is opened and closed properly ([]', utils.question4IsOpenedAndClosedProperly('([]'));
+  console.log('Is opened and closed properly ({}{[[]]})', utils.question4IsOpenedAndClosedProperly('({}{[[]]})'));
+  console.log('Is opened and closed properly ({}{[[]]})', utils.question4IsOpenedAndClosedProperly('({}{[[]]})'));
+  console.log('Is opened and closed properly ({}}{[[]]})', utils.question4IsOpenedAndClosedProperly('({}}{[[]]})'));
+
+  // console.log('Highest Floor', utils.question6EggProblem([true, true, true, true, true, true, true, true, false, false, false], 2));
 
   return (
     <div className="App">
